@@ -1,0 +1,22 @@
+{
+  "name": "run-chart-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArkejGit/RunChartGenerator.git"
+  },
+  "author": "arkej",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArkejGit/RunChartGenerator/issues"
+  },
+  "homepage": "https://github.com/ArkejGit/RunChartGenerator#readme",
+  "devDependencies": {
+    "@angular/cli": "^1.4.1"
+  }
+}
