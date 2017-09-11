@@ -1,0 +1,7 @@
+{
+	"/backend/*": {
+		"target": "http://localhost:80",
+		"seucure": false,
+		"logLevel": "debug"
+	}
+}
