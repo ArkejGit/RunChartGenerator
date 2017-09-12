@@ -11,14 +11,13 @@ export class AppComponent {
 
 	constructor(private getDataService: GetDataService) { }
 	
-	title = 'Run Chart Generator';
-	data;
+	runs:object;
 
 	getTestTwo() {
   		this.getDataService.getTest()
   			.subscribe(data => {
-  				this.data = data;
-  				console.log(this.data);
+  				this.runs = data;
+  				console.log(this.runs);
   			});	
 	}
 }
