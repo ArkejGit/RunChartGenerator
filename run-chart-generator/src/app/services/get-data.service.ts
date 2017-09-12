@@ -11,6 +11,6 @@
 
         getTest(): Observable<any> {
           return this.http.get('backend/index.php')
-                     .map(response => response);
+                     .map(response => response.json())
         }
     }

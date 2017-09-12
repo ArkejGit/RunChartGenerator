@@ -18,7 +18,7 @@ export class AppComponent {
   		this.getDataService.getTest()
   			.subscribe(data => {
   				this.data = data;
-  				console.log(this.data)
-  			});
+  				console.log(this.data);
+  			});	
 	}
 }
