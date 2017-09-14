@@ -10,7 +10,7 @@
       constructor(private http: Http) {}
 
         getTest(): Observable<any> {
-          return this.http.get('backend/index.php')
+          return this.http.get('/scrape')
                      .map(response => response.json())
         }
     }
