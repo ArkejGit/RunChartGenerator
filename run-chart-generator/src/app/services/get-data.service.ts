@@ -9,8 +9,8 @@
      
       constructor(private http: Http) {}
 
-        getTest(): Observable<any> {
-          return this.http.get('/scrape')
+        getRuns(): Observable<any> {
+          return this.http.get('/runs')
                      .map(response => response.json())
         }
     }

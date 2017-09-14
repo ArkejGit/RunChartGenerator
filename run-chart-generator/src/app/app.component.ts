@@ -13,8 +13,8 @@ export class AppComponent {
 	
 	runs:object;
 
-	getTestTwo() {
-  		this.getDataService.getTest()
+	loadRuns() {
+  		this.getDataService.getRuns()
   			.subscribe(data => {
   				this.runs = data;
   				console.log(this.runs);
