@@ -31,7 +31,9 @@
 </div>
   
   <div class="container">
-  <button class="btn btn-primary" (click)='loadRuns()'> {{ numberOfRuns == 0 ? 'Load runs' : 'Load next 10 runs' }}</button>
+  <button class="btn btn-primary" (click)='loadRuns()'> {{ numberOfRuns == 0 ? 'Load runs' : 'Load next 10 runs' }}
+  <i *ngIf="loadAnimationFlag" class="fa fa-spinner fa-pulse fa-fw"></i>
+  </button>
   </div>
 
 </div>

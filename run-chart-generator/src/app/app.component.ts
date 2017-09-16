@@ -12,15 +12,17 @@ export class AppComponent {
 	constructor(private getDataService: GetDataService) { }
 	
 	runs = {};
-	numberOfRuns = 0;
+	numberOfRuns:number = 0;
 	searchValue:string;
+	loadAnimationFlag:boolean;
 
 	loadRuns() {
+		this.loadAnimationFlag = true;
   		this.getDataService.getRuns(this.numberOfRuns)
   			.subscribe(data => {
   				this.runs = data;
-  				console.log(this.runs);
   				this.numberOfRuns = Object.keys(this.runs).length;
+  				this.loadAnimationFlag = false;
   			});	
 	}
 
