@@ -11,3 +11,19 @@
 .link {
 	margin: 10px;
 }
+
+#deleteIcon {
+	font-size: 1.5em;
+	color: #dc3545;
+	cursor: pointer;
+	opacity: 0.6;
+	-webkit-transition: all .25s ease;
+	   -moz-transition: all .25s ease;
+	    -ms-transition: all .25s ease;
+	     -o-transition: all .25s ease;
+	        transition: all .25s ease;
+}
+
+#deleteIcon:hover {
+	opacity: 1;
+}

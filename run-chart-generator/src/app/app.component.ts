@@ -13,6 +13,7 @@ export class AppComponent {
 	
 	runs = {};
 	numberOfRuns = 0;
+	searchValue:string;
 
 	loadRuns() {
   		this.getDataService.getRuns(this.numberOfRuns)
@@ -25,5 +26,9 @@ export class AppComponent {
 
 	getRunName(link) {
 		return link.match(/[^/]*$/)[0].slice(0, -4);
+	}
+
+	clearInput() {
+		this.searchValue = '';
 	}
 }
