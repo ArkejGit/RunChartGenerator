@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { GetDataService } from './services/get-data.service';
+import { ModalContent } from './modalContent/modal-content.component';
+
 
 @Component({
   selector: 'app-root',
@@ -9,7 +12,7 @@ import { GetDataService } from './services/get-data.service';
 })
 export class AppComponent {
 
-	constructor(private getDataService: GetDataService) { }
+	constructor(private getDataService: GetDataService, private modalService: NgbModal) { }
 	
 	runs = {};
 	numberOfRuns:number = 0;
@@ -33,4 +36,9 @@ export class AppComponent {
 	clearInput() {
 		this.searchValue = '';
 	}
+
+	open(link) {
+    const modalRef = this.modalService.open(ModalContent);
+    modalRef.componentInstance.link = link;
+  }
 }

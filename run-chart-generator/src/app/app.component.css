@@ -27,3 +27,7 @@
 #deleteIcon:hover {
 	opacity: 1;
 }
+
+.btn {
+	cursor: pointer;
+}
