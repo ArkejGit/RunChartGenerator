@@ -22,4 +22,8 @@ export class AppComponent {
   				this.numberOfRuns = Object.keys(this.runs).length;
   			});	
 	}
+
+	getRunName(link) {
+		return link.match(/[^/]*$/)[0].slice(0, -4);
+	}
 }

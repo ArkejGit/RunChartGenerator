@@ -19,9 +19,9 @@
     </div>
 
     <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
-      <div class="card-block">
-        <div *ngFor='let link of run.links'>
-          {{ link }}
+      <div id="link-container" class="card-block">
+        <div *ngFor='let link of run.links' class="btn btn-warning link">
+          {{ getRunName(link) }}
         </div>        
       </div>
     </div>

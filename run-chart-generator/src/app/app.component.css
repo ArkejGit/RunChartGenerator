@@ -1,3 +1,13 @@
 .main > * {
 	padding: 20px;
 }
+
+#link-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.link {
+	margin: 10px;
+}
