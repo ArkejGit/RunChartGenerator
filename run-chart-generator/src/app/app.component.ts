@@ -11,13 +11,15 @@ export class AppComponent {
 
 	constructor(private getDataService: GetDataService) { }
 	
-	runs:object;
+	runs = {};
+	numberOfRuns = 0;
 
 	loadRuns() {
-  		this.getDataService.getRuns()
+  		this.getDataService.getRuns(this.numberOfRuns)
   			.subscribe(data => {
   				this.runs = data;
   				console.log(this.runs);
+  				this.numberOfRuns = Object.keys(this.runs).length;
   			});	
 	}
 }

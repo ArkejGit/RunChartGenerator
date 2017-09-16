@@ -8,13 +8,7 @@
   <input type="text">
   </div>
 
-  <!-- <ul class="list-group">
-    <li class="list-group-item" *ngFor='let run of runs'>
-      {{ run.title }}
-    </li>
-  </ul> -->
-
-  <div id="accordion" role="tablist" aria-multiselectable="true">
+  <div *ngIf="numberOfRuns" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="card" *ngFor='let run of runs; let i=index'>
     <div class="card-header" role="tab" id="heading{{i}}">
       <h5 class="mb-0">
@@ -34,11 +28,9 @@
   </div>
   
 </div>
-
-  <!-- dsfgdfgdfgf -->
   
   <div class="container">
-  <button class="btn btn-primary" (click)='loadRuns()'>GET DATA</button>
+  <button class="btn btn-primary" (click)='loadRuns()'> {{ numberOfRuns == 0 ? 'Load runs' : 'Load next 10 runs' }}</button>
   </div>
 
 </div>
