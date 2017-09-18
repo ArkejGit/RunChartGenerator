@@ -22,7 +22,7 @@
     <div id="collapse{{i}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
       <div id="link-container" class="card-block">
         <button *ngFor='let link of run.links' class="btn btn-warning link" (click)="open(link)">
-          {{ getRunName(link) }}
+          {{ link | runName }}
         </button>        
       </div>
     </div>

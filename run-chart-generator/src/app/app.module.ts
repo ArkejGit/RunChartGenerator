@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { SearchPipe } from './pipes/search.pipe';
+import { RunNamePipe } from './pipes/run-name.pipe';
 
 import { ModalContent } from './modalContent/modal-content.component';
 
@@ -16,6 +17,7 @@ import { GetDataService } from './services/get-data.service';
   declarations: [
     AppComponent,
     SearchPipe,
+    RunNamePipe,
     ModalContent
   ],
   imports: [
