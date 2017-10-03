@@ -13,4 +13,9 @@
           return this.http.get(`/runs?number=${number}`)
                      .map(response => response.json())
         }
+
+        getResults(link): Observable<Response> {
+          return this.http.get(`/results?link=${link}`)
+                     .map(response => response.json())
+        }
     }
