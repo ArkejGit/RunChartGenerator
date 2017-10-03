@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "description": "Run Chart Generator backend",
   "main": "server.js",
-  "author": "Scotch",
+  "author": "arkej",
   "dependencies": {
+    "cheerio": "latest",
     "express": "latest",
-    "request": "latest",
-    "cheerio": "latest"
+    "iconv-lite": "^0.4.19",
+    "request": "latest"
   }
 }
