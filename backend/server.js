@@ -1,9 +1,11 @@
-var express = require('express');
-var request = require('request');
-var cheerio = require('cheerio');
-var iconv = require('iconv-lite');
-var app     = express();
+let express = require('express');
+let request = require('request');
+let cheerio = require('cheerio');
+let iconv = require('iconv-lite');
+let fs = require('fs');
+let app = express();
 
+// ----- GET RUNS -----
 app.get('/runs', function(req, res){
 
 const url = 'https://plus-timing.pl/txt_wyniki.php';
@@ -36,9 +38,17 @@ const url = 'https://plus-timing.pl/txt_wyniki.php';
     });    
 })
 
+// ----- GET RESULTS -----
 app.get('/results', function(req, res){
-    const link =  req.query.link;
-     res.send(JSON.stringify(link));
+    const link =  'https://plus-timing.pl/' + req.query.link;
+
+    request.head(link, function(error, response, body){
+        request(link).pipe(fs.createWriteStream('PDF/run.pdf')).on('close', () => {
+            res.send(JSON.stringify('done'));
+        })
+    });
+    
+    
 })
 
 app.listen(80, function () {
