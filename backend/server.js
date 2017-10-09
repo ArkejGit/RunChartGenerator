@@ -3,7 +3,9 @@ let request = require('request');
 let cheerio = require('cheerio');
 let iconv = require('iconv-lite');
 let fs = require('fs');
+let PDFParser = require("pdf2json");
 let app = express();
+
 
 // ----- GET RUNS -----
 app.get('/runs', function(req, res){
@@ -44,11 +46,36 @@ app.get('/results', function(req, res){
 
     request.head(link, function(error, response, body){
         request(link).pipe(fs.createWriteStream('PDF/run.pdf')).on('close', () => {
-            res.send(JSON.stringify('done'));
+            
+            let pdfParser = new PDFParser();
+            let results;
+
+            pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+            pdfParser.on("pdfParser_dataReady", pdfData => {
+            fs.writeFile("PDF/run.json", JSON.stringify(pdfData));
+
+            const resultTitleContainer = pdfData.formImage.Pages[0].Texts.filter(text => text.R[0].T == 'Wynik')[0];
+            const x = resultTitleContainer.x;
+
+            const resultsArray = pdfData.formImage.Pages.map(page => {
+                return page.Texts.filter(text => {
+                    return (Math.abs(text.x - x) < 1) && (text.R[0].T != 'Wynik');
+                });
+            });
+            const formattedResultsArray = [].concat(...resultsArray).map(result => {
+                return result.R[0].T.replace(/%3A/g,':')
+            });
+
+            results = JSON.stringify(formattedResultsArray);
+            res.send(results);
+            });
+
+            pdfParser.loadPDF("PDF/run.pdf");
+
+            
         })
     });
-    
-    
+       
 })
 
 app.listen(80, function () {

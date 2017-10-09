@@ -21,7 +21,8 @@ export class ModalContent implements OnInit {
   loadResults() {
 	this.getDataService.getResults(this.link)
 			.subscribe(data => {
-				this.results = data;  				
+				this.results = 'done';
+        console.log(data);  				
 			});	
   }
 }
