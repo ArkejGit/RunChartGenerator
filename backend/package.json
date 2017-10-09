@@ -8,6 +8,7 @@
     "cheerio": "latest",
     "express": "latest",
     "iconv-lite": "^0.4.19",
+    "pdf2json": "^1.1.7",
     "request": "latest"
   },
   "devDependencies": {
