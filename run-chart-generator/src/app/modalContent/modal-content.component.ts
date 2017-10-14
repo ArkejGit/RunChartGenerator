@@ -6,7 +6,8 @@ import { GetDataService } from '../services/get-data.service';
 @Injectable()
 @Component({
   selector: 'modal-content',
-  templateUrl: './modal-comtent.component.html'
+  templateUrl: './modal-comtent.component.html',
+  styleUrls: ['./modal-content.component.css']
 })
 export class ModalContent implements OnInit {
   @Input() link;
