@@ -10,6 +10,7 @@ import { SearchPipe } from './pipes/search.pipe';
 import { RunNamePipe } from './pipes/run-name.pipe';
 
 import { ModalContent } from './modalContent/modal-content.component';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { GetDataService } from './services/get-data.service';
 
@@ -24,7 +25,8 @@ import { GetDataService } from './services/get-data.service';
     BrowserModule,
     HttpModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ChartsModule
   ],
   providers: [GetDataService],
   bootstrap: [AppComponent],
