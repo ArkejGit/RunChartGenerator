@@ -13,15 +13,18 @@ export class ModalContent implements OnInit {
   constructor(private getDataService: GetDataService, public activeModal: NgbActiveModal) {}
 
   results:any;
+  loadAnimationFlag:boolean;
 
   ngOnInit() { 
 	this.loadResults();
   }
 
   loadResults() {
+  this.loadAnimationFlag = true;
 	this.getDataService.getResults(this.link)
 			.subscribe(data => {
 				this.results = 'done';
+        this.loadAnimationFlag = false;
         console.log(data);  				
 			});	
   }
