@@ -76,11 +76,16 @@ app.get('/results', function(req, res){
 
             results = JSON.stringify(formattedResultsArray);
             res.send(results);
-        });        
+            fs.unlink('PDF/' + runName + '.pdf', (err) => {
+                if (err) {console.error(err)}
+                else console.info(runName + '.pdf deleted')
+            });
+        });  
+              
     }
        
 })
 
 app.listen(80, function () {
   console.log('Example app listening on port 80!')
-})
+});
