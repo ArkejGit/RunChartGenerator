@@ -6,9 +6,12 @@
 </div>
 
 <div class="modal-body">
-  <i *ngIf="loadAnimationFlag" class="fa fa-spinner fa-pulse fa-fw"></i>
-  <a> {{ results }} </a>
-</div>
+	<i *ngIf="loadAnimationFlag" class="fa fa-spinner fa-pulse fa-fw"></i>
+	<canvas *ngIf="loadAnimationFlag == false" baseChart width="400" height="400"
+	            [datasets]="lineChartData"
+	            [options]="lineChartOptions"
+	            [chartType]="lineChartType"></canvas>
+	</div>
 
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
