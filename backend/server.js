@@ -43,38 +43,41 @@ const url = 'https://plus-timing.pl/txt_wyniki.php';
 // ----- GET RESULTS -----
 app.get('/results', function(req, res){
     const link =  'https://plus-timing.pl/' + req.query.link;
+    const runName = req.query.link.match(/[^/]*$/)[0].slice(0, -4);
 
-    request.head(link, function(error, response, body){
-        request(link).pipe(fs.createWriteStream('PDF/run.pdf')).on('close', () => {
-            
-            let pdfParser = new PDFParser();
-            let results;
+    let pdfStream = fs.createWriteStream('PDF/' + runName + '.pdf');
+    let jsonStream = fs.createWriteStream('PDF/' + runName + '.json');
+    
+    request(link, parsePDF).pipe(pdfStream);
 
-            pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
-            pdfParser.on("pdfParser_dataReady", pdfData => {
-            fs.writeFile("PDF/run.json", JSON.stringify(pdfData));
+    function parsePDF() {
+        let pdfParser = new PDFParser();
+        let results;
+        jsonStream;
 
-            const resultTitleContainer = pdfData.formImage.Pages[0].Texts.filter(text => text.R[0].T == 'Wynik')[0];
-            const x = resultTitleContainer.x;
+        pdfParser.loadPDF('PDF/' + runName + '.pdf');
 
-            const resultsArray = pdfData.formImage.Pages.map(page => {
+        pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+
+        pdfParser.on("pdfParser_dataReady", pdfData => {
+            jsonStream.write(JSON.stringify(pdfData));
+
+            let resultTitleContainer = pdfData.formImage.Pages[0].Texts.filter(text => text.R[0].T == 'Wynik')[0];
+            let x = resultTitleContainer.x;
+
+            let resultsArray = pdfData.formImage.Pages.map(page => {
                 return page.Texts.filter(text => {
                     return (Math.abs(text.x - x) < 1) && (text.R[0].T != 'Wynik');
                 });
             });
-            const formattedResultsArray = [].concat(...resultsArray).map(result => {
+            let formattedResultsArray = [].concat(...resultsArray).map(result => {
                 return result.R[0].T.replace(/%3A/g,':')
             });
 
             results = JSON.stringify(formattedResultsArray);
             res.send(results);
-            });
-
-            pdfParser.loadPDF("PDF/run.pdf");
-
-            
-        })
-    });
+        });        
+    }
        
 })
 
