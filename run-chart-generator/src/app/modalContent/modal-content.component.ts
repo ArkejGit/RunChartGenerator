@@ -23,6 +23,17 @@ export class ModalContent implements OnInit {
   lineChartOptions:any = {
     responsive: true
   };
+  lineChartColors:Array<any> = [
+    {
+      backgroundColor: 'rgba(0,123,255,0.2)',
+      borderColor: 'rgba(0,123,255,0.8)',
+      pointBackgroundColor: 'rgba(0,123,255,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(255,193,7,0.8)'
+    }
+  ];
+  lineChartLegend:boolean = false;
   lineChartType:string = 'line';
 
   ngOnInit() { 
