@@ -19,6 +19,7 @@ export class ModalContent implements OnInit {
   lineChartData:Array<any> = [
     {data: []}
   ];
+  lineChartLabels:Array<any> = [1,2,3,4,5,6,7,8,9,10];
   lineChartOptions:any = {
     responsive: true
   };
@@ -32,10 +33,31 @@ export class ModalContent implements OnInit {
   this.loadAnimationFlag = true;
 	this.getDataService.getResults(this.link)
 			.subscribe(data => {
-				this.lineChartData[0].data = data;
+        let distribution = this.distribution(data);
+        this.lineChartData[0].data = distribution;
         this.loadAnimationFlag = false;
-        console.log(data);	
+        console.log(data, distribution);	
 			});	
+  }
+
+  distribution(data) {
+    let interval = (data[data.length-1] - data[0]) / 10;
+    let intervals = [];
+    for (let i=1; i<=10; i++) {
+      intervals.push(data[0] + interval * i);
+    }
+    let distribution = new Array(10).fill(0);
+
+    data.forEach(result => {
+      intervals.every((interval, i) => {
+        if (result <= interval) {
+          distribution[i]++;
+          return false;
+        }
+        else return true;
+      })
+    });
+    return distribution;
   }
 
 
