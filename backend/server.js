@@ -72,7 +72,7 @@ app.get('/results', function(req, res){
             });
             let formattedResultsArray = [].concat(...resultsArray).map(result => {
                 return result.R[0].T.replace(/%3A/g,':');
-            });
+            }).filter(result => result.includes(':'));
 
             let resultsArrayInSeconds = formattedResultsArray.map(result => result.split(':')).map(result => {
                 return [result[0]*3600, result[1]*60, result[2]].reduce((sum, n) => {
