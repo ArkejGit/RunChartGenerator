@@ -15,7 +15,9 @@ export class ModalContent implements OnInit {
   constructor(private getDataService: GetDataService, public activeModal: NgbActiveModal) {}
 
   results;
-  loadAnimationFlag:boolean;
+  loadAnimationFlag:boolean = false;
+  chartFlag:boolean = false;
+
   lineChartData:Array<any> = [
     {data: []}
   ];
@@ -44,10 +46,19 @@ export class ModalContent implements OnInit {
   this.loadAnimationFlag = true;
 	this.getDataService.getResults(this.link)
 			.subscribe(data => {
+        this.results = data;
+
+        //not display chart when there are not enough results
+        if (this.results.length < 30) {
+          this.loadAnimationFlag = false;
+          return;
+        }
+
         let distribution = this.distribution(data);
         this.lineChartData[0].data = distribution.distribution;
         this.lineChartLabels = distribution.intervalsFormatted;
-        this.loadAnimationFlag = false;	
+        this.loadAnimationFlag = false;
+        this.chartFlag = true;
 			});	
   }
 
