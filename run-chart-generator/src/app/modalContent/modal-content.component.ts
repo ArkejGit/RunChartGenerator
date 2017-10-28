@@ -1,7 +1,6 @@
 import { Component, Input, Injectable, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { GetDataService } from '../services/get-data.service';
-//import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 @Injectable()
 @Component({
@@ -62,6 +61,7 @@ export class ModalContent implements OnInit {
 			});	
   }
 
+  //calculate distribution
   distribution(data) {
     let interval = (data[data.length-1] - data[0]) / 10;
     let intervals = [];
