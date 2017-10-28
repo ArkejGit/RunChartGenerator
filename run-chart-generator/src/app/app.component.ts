@@ -29,10 +29,6 @@ export class AppComponent {
   			});	
 	}
 
-	getRunName(link) {
-		return link.match(/[^/]*$/)[0].slice(0, -4);
-	}
-
 	clearInput() {
 		this.searchValue = '';
 	}
